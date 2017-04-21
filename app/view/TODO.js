@@ -61,7 +61,6 @@ class Status extends  Component{
 	}
 
 	render(){
-		console.log(this.props)
 		return (<div>
 				<span id="totalCount">{this.props.ncount.total+'issue Total  '}</span>
 				<span id="completedCount">{this.props.ncount.completed+'issue complete  '}</span>
@@ -116,7 +115,6 @@ export default class TodoAPP extends Component{
 		});
 	}
 	render(){
-		console.log(this.state)
 		return(<div>
 			<TodoInput addNew={this.addNew.bind(this)}/>
 			<Todos texts={this.state.todoTexts} remove={this.removeOne.bind(this)}/>

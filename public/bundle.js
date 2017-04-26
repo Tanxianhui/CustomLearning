@@ -9907,8 +9907,8 @@ var Todos = function (_Component2) {
 		value: function render() {
 			var _this3 = this;
 
-			var todoItems = _lodash2.default.map(this.props.texts, function (t) {
-				return _react2.default.createElement(Todo, { text: t, remove: _this3.props.remove });
+			var todoItems = _lodash2.default.map(this.props.texts, function (t, i) {
+				return _react2.default.createElement(Todo, { text: t, key: new Date().toJSON() + i, remove: _this3.props.remove });
 			});
 			return _react2.default.createElement(
 				'ul',
@@ -9933,7 +9933,6 @@ var Status = function (_Component3) {
 	_createClass(Status, [{
 		key: 'render',
 		value: function render() {
-			console.log(this.props);
 			return _react2.default.createElement(
 				'div',
 				null,
@@ -9987,6 +9986,16 @@ var TodoInput = function (_Component4) {
 
 	return TodoInput;
 }(_react.Component);
+//无状态组件
+
+
+function Title(props) {
+	return _react2.default.createElement(
+		'div',
+		null,
+		props.text
+	);
+}
 
 var TodoAPP = function (_Component5) {
 	_inherits(TodoAPP, _Component5);
@@ -10032,10 +10041,10 @@ var TodoAPP = function (_Component5) {
 	}, {
 		key: 'render',
 		value: function render() {
-			console.log(this.state);
 			return _react2.default.createElement(
 				'div',
 				null,
+				_react2.default.createElement(Title, { text: 'Hello' }),
 				_react2.default.createElement(TodoInput, { addNew: this.addNew.bind(this) }),
 				_react2.default.createElement(Todos, { texts: this.state.todoTexts, remove: this.removeOne.bind(this) }),
 				_react2.default.createElement(Status, { ncount: { total: this.state.total,

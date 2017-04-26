@@ -48,8 +48,8 @@ class Todos extends Component{
 		super(props);
 	}
 	render(){
-		let todoItems=_.map(this.props.texts,(t)=>{
-			return <Todo text={t} remove={this.props.remove}/>
+		let todoItems=_.map(this.props.texts,(t,i)=>{
+			return <Todo text={t} key={(new Date).toJSON()+i} remove={this.props.remove}/>
 		})
 		return <ul>{todoItems}</ul>;
 	}
@@ -84,6 +84,10 @@ class TodoInput extends Component{
 		return <input id="inputText" ref="inputText" type="text" onKeyUp={this.InputContent.bind(this)}/>
 	}
 }
+//无状态组件
+function Title(props) {
+	return <div>{props.text}</div>
+}
 export default class TodoAPP extends Component{
 	constructor(props){
 		super(props);
@@ -116,6 +120,7 @@ export default class TodoAPP extends Component{
 	}
 	render(){
 		return(<div>
+			<Title text="Hello"/>
 			<TodoInput addNew={this.addNew.bind(this)}/>
 			<Todos texts={this.state.todoTexts} remove={this.removeOne.bind(this)}/>
 			<Status ncount={{total:this.state.total,
